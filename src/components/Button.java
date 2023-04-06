@@ -19,12 +19,14 @@ public class Button {
     public Button(Container container, String label){
         btn.setText(label);
         defaultConfig(btn);
-        setBackground(btn, defaultColor);
         container.add(btn);
     }
 
-    private static void setBackground(JButton btn, Color c){
-
+    public void setBackground(Color c){
+        btn.setBackground(c);
+    }
+    public void setForeground(Color c){
+        btn.setForeground(c);
     }
     private static void defaultConfig(JButton btn){
         // Set the default background
