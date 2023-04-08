@@ -9,9 +9,7 @@ import java.awt.event.ActionListener;
 public class Button {
         JButton btn = new JButton("Button");
         private static final Color defaultColor = new Color(102, 43, 214);
-        public Button(){
-            System.out.println("Im running");
-        }
+    protected static Border border = BorderFactory.createLineBorder(defaultColor, 8, true);
     public Button(Container container){
         container.add(btn);
     }
@@ -23,10 +21,13 @@ public class Button {
     }
 
     public void setBackground(Color c){
-        btn.setBackground(c);
+        this.btn.setBackground(c);
+         Border border = BorderFactory.createLineBorder(c, 8, true);
+
+        this.btn.setBorder(border);
     }
     public void setForeground(Color c){
-        btn.setForeground(c);
+        this.btn.setForeground(c);
     }
     private static void defaultConfig(JButton btn){
         // Set the default background
@@ -34,14 +35,21 @@ public class Button {
         btn.setForeground(Color.white);
 
 //        Set default border and border color
-        Border border = BorderFactory.createLineBorder(defaultColor, 8, true);
+
         btn.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
         btn.setBorder(border);
 
 //        disable border text highlight and outline during click
         btn.setRolloverEnabled(false);
-        btn.setFocusPainted(false);
         btn.setIgnoreRepaint(true);
+        btn.setFocusPainted(false);
+
+
+        btn.setSize(new Dimension(120, 42));
+        btn.setMaximumSize(new Dimension(200, 42));
+        btn.setMinimumSize(new Dimension(42, 42));
+        btn.setPreferredSize(new Dimension(120, 42));
+
     }
 
     public void onClick(OnClick cb){

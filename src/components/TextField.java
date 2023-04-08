@@ -7,25 +7,57 @@ import java.awt.event.*;
 
 final public class TextField extends java.awt.TextField {
     private final JTextField input = new JTextField();
-    public String value = null;
+    private String value = null;
     public TextField(Container container){
         addComponent(container);
+        this.handleTypeEvent();
     }
 
     public TextField(Container container, String str){
         addComponent(container);
-        TextField.paint(input);
-        if(!str.trim().isEmpty()){
-        value = str;
-        input.setText(value);
+        TextField.defaultConfig(input);
+        this.setValueIfNoWhiteSpace(str);
+        this.handleTypeEvent();
+
+    }
+
+    public TextField(Container container, String str, String label){
+        JPanel panel = new JPanel();
+        BorderLayout lt = new BorderLayout();
+        lt.setVgap(6);
+        panel.setLayout(lt);
+        JLabel inputLabel = new JLabel(label);
+        inputLabel.setFont(new Font(null, Font.BOLD, 14));
+        panel.add(inputLabel, BorderLayout.PAGE_START);
+        input.setText(str);
+        TextField.defaultConfig(input);
+
+        this.setValueIfNoWhiteSpace(str);
+        this.handleTypeEvent();
+
+        panel.add(input, BorderLayout.PAGE_END);
+        container.add(panel);
+    }
+
+    private void setValueIfNoWhiteSpace(String initialString){
+        if(!initialString.trim().isEmpty()){
+            value = initialString;
+            input.setText(value);
+        }
+    }
+    private void handleTypeEvent(){
         input.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
                 super.keyTyped(e);
-               value = input.getText();
+                value = input.getText();
+                input.setForeground(Color.BLACK);
             }
         });
-        }
+    }
+
+    public String getValue(){
+        return this.value;
     }
     public void setPlaceholder(String text){
         input.addFocusListener(new FocusAdapter() {
@@ -34,7 +66,10 @@ final public class TextField extends java.awt.TextField {
                 super.focusLost(e);
                 if(value.trim().isEmpty()){
                     input.setText(text);
-                    input.setForeground(new Color(231, 20, 20));
+                    input.setForeground(new Color(0, 0, 0, 107));
+                }
+                else {
+                    input.setForeground(new Color(0, 0, 0));
                 }
             }
 
@@ -51,7 +86,10 @@ final public class TextField extends java.awt.TextField {
         c.add(TextField.this.input);
     }
 
-    private static void paint(JTextField j){
-        j.setSize(new Dimension(250, 50));
+    private static void defaultConfig(JTextField j){
+        j.setSize(new Dimension(250, 42));
+        j.setMinimumSize(new Dimension(250, 42));
+        j.setPreferredSize(new Dimension(320, 42));
+        j.setMargin(new Insets(6, 6, 6, 6));
     }
 }
