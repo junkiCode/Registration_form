@@ -8,6 +8,7 @@ import java.awt.event.*;
 final public class TextField extends java.awt.TextField {
     private final JTextField input = new JTextField();
     private String value = null;
+    private boolean showPlaceholderText = true;
     public TextField(Container container){
         addComponent(container);
         this.handleTypeEvent();
@@ -60,23 +61,33 @@ final public class TextField extends java.awt.TextField {
         return this.value;
     }
     public void setPlaceholder(String text){
+
+//        this.showPlaceholderText = true;
+        input.setText(text);
         input.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
                 super.focusLost(e);
-                if(value.trim().isEmpty()){
+
+                if(value != null) {
+                    showPlaceholderText = false;
+                }
+
+                if(showPlaceholderText){
                     input.setText(text);
                     input.setForeground(new Color(0, 0, 0, 107));
                 }
                 else {
                     input.setForeground(new Color(0, 0, 0));
                 }
+
             }
 
             @Override
             public void focusGained(FocusEvent e) {
                 super.focusGained(e);
-                if(value.trim().isEmpty()){
+                System.out.println(showPlaceholderText);
+                if(value == null){
                 input.setText("");
                 }
             }
