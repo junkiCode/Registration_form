@@ -11,7 +11,7 @@ CREATE  TABLE registered_student (
     father_name VARCHAR(250) NOT NULL,
     mother_name VARCHAR(250) NOT NULL,
     address VARCHAR(255) NOT NULL,
-    dob DATE NOT NULL,
+    dob VARCHAR(50) NOT NULL,
     gender VARCHAR(20) NOT NULL,
     email VARCHAR(100) NOT NULL,
     contact_no VARCHAR(20) NOT NULL,

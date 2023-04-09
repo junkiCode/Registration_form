@@ -26,6 +26,10 @@ public class SelectBox {
 
 	}
 
+	public String getSelected(){
+		Object selected = selectBox.getSelectedItem();
+		return selected.toString();
+	}
 	private static void defaultConfig(JComboBox cmp){
 		cmp.setMinimumSize(new Dimension(120, 42));
 		cmp.setMaximumSize(new Dimension(120, 42));

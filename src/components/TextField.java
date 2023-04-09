@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-final public class TextField extends java.awt.TextField {
+final public class TextField {
     private final JTextField input = new JTextField();
     private String value = null;
     private boolean showPlaceholderText = true;
