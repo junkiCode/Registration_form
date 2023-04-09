@@ -5,9 +5,7 @@ import dbConnection.DB;
 
 import java.awt.*;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.text.SimpleDateFormat;
 import javax.swing.*;
 
 public class Form {
@@ -45,7 +43,6 @@ public class Form {
         TextField dob = new TextField(container, "", "Date Of Birth");
         dob.setPlaceholder("ex: 13/02/2001");
 
-//        TextField gender = new TextField(container, "Male", "Gender");
         String[] genders = {"Male", "Female", "Other"};
         SelectBox gender = new SelectBox(container, genders, "Gender");
 
@@ -64,6 +61,7 @@ public class Form {
 
         JPanel panel = new JPanel();
         panel.setAlignmentX(32);
+
         Button btnSubmit = new Button(panel, "Submit");
         btnSubmit.onClick(e -> {
             Connection con = null;
@@ -104,8 +102,10 @@ public class Form {
             }
 
         });
+
         Button btnCancel = new Button(panel, "CANCEL");
         btnCancel.setBackground(new Color(87, 87, 87));
+
         container.add(panel);
         root.add(container);
         root.pack();

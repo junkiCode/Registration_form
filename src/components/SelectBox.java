@@ -2,11 +2,7 @@ package components;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
 
-interface Select {
-	public String getSelected();
-}
 public class SelectBox {
 
 	private JComboBox selectBox = null;

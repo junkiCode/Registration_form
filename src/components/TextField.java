@@ -62,7 +62,6 @@ final public class TextField {
     }
     public void setPlaceholder(String text){
 
-//        this.showPlaceholderText = true;
         input.setText(text);
         input.addFocusListener(new FocusAdapter() {
             @Override
