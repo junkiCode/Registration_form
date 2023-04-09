@@ -1,5 +1,6 @@
 import components.Button;
 import components.Flex;
+import components.SelectBox;
 import components.TextField;
 
 import java.awt.*;
@@ -45,8 +46,9 @@ public class Form {
         TextField dob = new TextField(container, "", "Date Of Birth");
         dob.setPlaceholder("ex: 13/02/2001");
 
-        TextField gender = new TextField(container, "Male", "Gender");
-
+//        TextField gender = new TextField(container, "Male", "Gender");
+        String[] gender = {"Male", "Female", "Other"};
+        SelectBox select = new SelectBox(container, gender, "Gender");
         TextField email = new TextField(container, "", "Email");
         email.setPlaceholder("ex: johndoe@gmail.com");
 

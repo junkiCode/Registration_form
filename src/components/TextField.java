@@ -86,7 +86,6 @@ final public class TextField extends java.awt.TextField {
             @Override
             public void focusGained(FocusEvent e) {
                 super.focusGained(e);
-                System.out.println(showPlaceholderText);
                 if(value == null){
                 input.setText("");
                 }
