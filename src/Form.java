@@ -9,9 +9,9 @@ import java.sql.PreparedStatement;
 import javax.swing.*;
 
 public class Form {
-
-    public static void main(String[] args){
+    public Form(){
         JFrame root = new JFrame("Registration Form");
+        root.setAlwaysOnTop(true);
         JPanel container = new JPanel();
         container.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 0), 16));
         container.setSize(900, 600);
@@ -62,7 +62,8 @@ public class Form {
         JPanel panel = new JPanel();
         panel.setAlignmentX(32);
 
-        Button btnSubmit = new Button(panel, "Submit");
+        Button btnSubmit = new Button("Submit");
+        container.add(btnSubmit);
         btnSubmit.onClick(e -> {
             Connection con = null;
             try {
@@ -90,10 +91,23 @@ public class Form {
 
                 int res = stm.executeUpdate();
                 if(res > 0){
-                    System.out.println("One Record is added");
+                    firstName.setText("");
+                    midName.setText("");
+                    lastName.setText("");
+                    fatherName.setText("");
+                    motherName.setText("");
+                    address.setText("");
+                    dob.setText("");
+                    email.setText("");
+                    contactNo.setText("");
+                    parentContactNo.setText("");
+                    JOptionPane.showMessageDialog(root, "One Record is Added");
                 }
                 else {
                     System.out.println("Can't add record");
+                    JOptionPane.showMessageDialog(root, "Can't add record",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
                 }
                 con.close();
             }
@@ -103,9 +117,12 @@ public class Form {
 
         });
 
-        Button btnCancel = new Button(panel, "CANCEL");
+        Button btnCancel = new Button("CANCEL");
+        container.add(btnCancel);
         btnCancel.setBackground(new Color(87, 87, 87));
-
+        btnCancel.onClick(e -> {
+            root.dispose();
+        });
         container.add(panel);
         root.add(container);
         root.pack();

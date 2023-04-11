@@ -6,28 +6,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Button {
-        JButton btn = new JButton("Button");
-        private static final Color defaultColor = new Color(102, 43, 214);
+public class Button extends JButton {
+    private static final Color defaultColor = new Color(102, 43, 214);
     protected static Border border = BorderFactory.createLineBorder(defaultColor, 8, true);
-    public Button(Container container){
-        container.add(btn);
+
+    public Button( String label){
+        this.setText(label);
+        defaultConfig(this);
     }
 
-    public Button(Container container, String label){
-        btn.setText(label);
-        defaultConfig(btn);
-        container.add(btn);
-    }
+    public void setBg(Color c){
+        this.setBackground(c);
+        Border border = BorderFactory.createLineBorder(c, 8, true);
 
-    public void setBackground(Color c){
-        this.btn.setBackground(c);
-         Border border = BorderFactory.createLineBorder(c, 8, true);
-
-        this.btn.setBorder(border);
+        this.setBorder(border);
     }
-    public void setForeground(Color c){
-        this.btn.setForeground(c);
+    public void setFg(Color c){
+        this.setForeground(c);
     }
     private static void defaultConfig(JButton btn){
         // Set the default background
@@ -47,18 +42,18 @@ public class Button {
 
         btn.setSize(new Dimension(120, 42));
         btn.setMaximumSize(new Dimension(200, 42));
-        btn.setMinimumSize(new Dimension(42, 42));
+        btn.setMinimumSize(new Dimension(120, 42));
         btn.setPreferredSize(new Dimension(120, 42));
 
     }
 
     public void onClick(OnClick cb){
-            btn.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent actionEvent)  {
-                    cb.click(actionEvent);
-                }
-            });
+        this.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent)  {
+                cb.click(actionEvent);
+            }
+        });
     }
 
 }

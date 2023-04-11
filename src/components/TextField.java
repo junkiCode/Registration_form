@@ -94,6 +94,12 @@ final public class TextField {
     private void addComponent(Container c){
         c.add(TextField.this.input);
     }
+    public void setText(String value){
+        this.value = value;
+        if(this.value.isEmpty()){
+            this.showPlaceholderText = true;
+        }
+    }
 
     private static void defaultConfig(JTextField j){
         j.setSize(new Dimension(250, 42));
